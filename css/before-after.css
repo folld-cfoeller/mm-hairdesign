@@ -1,0 +1,49 @@
+.ba-slider {
+    position: relative;
+    overflow: hidden;
+}
+
+.ba-slider img {
+    width: 100%;
+    display: block;
+    max-width: none;
+}
+
+.ba-slider .resize {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 50%;
+    overflow: hidden;
+}
+
+.ba-slider .handle {
+    /* Thin line seperator */
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    cursor: ew-resize;
+    background-color: #000;
+}
+
+.ba-slider .handle:after {
+    position: absolute;
+    top: 50%;
+    width: 50px;
+    height: 50px;
+    left: calc(50% - 25px);
+    top: calc(50% - 25px);
+    content: '\276E\276F';
+    font-size: 36px;
+    color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
