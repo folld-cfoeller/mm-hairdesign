@@ -33,12 +33,12 @@
         }
     };
 
-    // display News Modal onLoad
+    /* display News Modal onLoad
 
     document.addEventListener('DOMContentLoaded', function () {
         $('#modalNews').modal('show');
     });
-    
+    */
 
 
 
