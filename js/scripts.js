@@ -3,10 +3,10 @@
  * Copyright 2013-2020 Start Bootstrap
  * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-grayscale/blob/master/LICENSE)
  */
-(function($) {
+(function ($) {
     "use strict"; // Start of use strict
     var isMobile;
-    (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) ? isMobile = true: isMobile = false;
+    (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) ? isMobile = true : isMobile = false;
 
     $.cookieBar({
         style: 'bottom',
@@ -21,7 +21,7 @@
     });
 
     // When the user scrolls the page - sticky header and add spacing 
-    window.onscroll = function() {
+    window.onscroll = function () {
         if (window.pageYOffset > 0) {
             navbar.addClass("fixed-top");
             $('#spacer').addClass("navbar-spacer");
@@ -42,12 +42,127 @@
 
 
 
-    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+
+
+
+    // Pfad zur JSON-Datei (bei Bedarf anpassen)
+    const REVIEWS_JSON_URL = "js/reviews.json";
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const reviewsRow = document.getElementById("reviews-row");
+        const reviewsRowMobile = document.getElementById("reviews-row-mobile");
+        const avgEl = document.getElementById("reviews-average");
+        const subtitleEl = document.getElementById("reviews-subtitle");
+        const fallbackEl = document.getElementById("reviews-fallback");
+
+        if (!reviewsRow || !reviewsRowMobile || !avgEl || !subtitleEl) {
+            console.warn("Google-Reviews-Container nicht gefunden.");
+            return;
+        }
+
+        fetch(REVIEWS_JSON_URL)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Netzwerkfehler beim Laden der Reviews");
+                }
+                return response.json();
+            })
+            .then((data) => {
+                const salonName = data.salonName || "M&M Hairdesign";
+                const reviews = Array.isArray(data.reviews) ? data.reviews : [];
+
+                if (!reviews.length) {
+                    throw new Error("Keine Reviews in JSON gefunden");
+                }
+
+                // Durchschnitt berechnen
+                const totalRating = reviews.reduce((sum, r) => sum + (r.rating || 0), 0);
+
+
+                const avgRating = totalRating / reviews.length;
+
+
+                const avgRounded = Math.round(avgRating * 10) / 10; // z.B. 4.9
+
+                avgEl.textContent = `★ ${avgRounded.toString().replace(".", ",")} / 5`;
+                subtitleEl.textContent = `Google-Bewertungen · ${salonName}`;
+
+                // Karten rendern
+                reviews.forEach((review) => {
+                    const col = document.createElement("div");
+                    col.className = "col-md-6 col-lg-4";
+
+                    const stars = "★★★★★".slice(0, review.rating || 0);
+
+                    col.innerHTML = `
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body">
+                            <div class="mb-2 small text-warning">
+                                <img src="assets/img/Google_Logo.png" alt="" class="reviews google-rating__brand">
+
+                                ${stars}
+                             </div>
+                            <p class="card-text mb-3">
+                                ${review.text || ""}
+                            </p>
+                            </div>
+                            <div class="card-footer bg-white border-0 pt-0">
+                            <small class="text-muted">${review.name || "Anonym"} · Google-Bewertung</small>
+                            </div>
+                        </div>
+                        `;
+                         reviewsRowMobile.appendChild(col.cloneNode(true));
+                          reviewsRow.appendChild(col.cloneNode(true));
+ 
+                });
+            })
+            .catch((error) => {
+                console.error(error);
+                if (fallbackEl) {
+                    fallbackEl.classList.remove("d-none");
+                }
+            });
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    $(document).on('click', '[data-toggle="lightbox"]', function (event) {
         event.preventDefault();
         $(this).ekkoLightbox();
     });
 
-    $(".team-card").click(function(obj) {
+    $(".team-card").click(function (obj) {
 
         var i = this.id.split('-')[1];
 
@@ -80,11 +195,11 @@
         scrollTo = scrollTo - spacing;
         $('html, body').animate({
             'scrollTop': scrollTo
-        }, 900, 'swing', function() {});
+        }, 900, 'swing', function () { });
     }
 
     // Smooth scrolling using jQuery easing
-    $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function() {
+    $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function () {
         if (
             location.pathname.replace(/^\//, "") ==
             this.pathname.replace(/^\//, "") &&
@@ -98,8 +213,8 @@
                 $("[name=" + this.hash.slice(1) + "]");
             if (target.length) {
                 $("html, body").animate({
-                        scrollTop: target.offset().top - spacing,
-                    },
+                    scrollTop: target.offset().top - spacing,
+                },
                     1000,
                     "easeInOutExpo"
                 );
@@ -140,7 +255,7 @@
     })
 
     // Closes responsive menu when a scroll trigger link is clicked
-    $(".js-scroll-trigger").click(function() {
+    $(".js-scroll-trigger").click(function () {
         $(".navbar-collapse").collapse("hide");
     });
 
@@ -151,7 +266,7 @@
     });
 
     // Collapse Navbar
-    var navbarCollapse = function() {
+    var navbarCollapse = function () {
         if ($("#navbar").offset().top > spacing) {
             $("#navbar").addClass("navbar-shrink");
         } else {
@@ -172,7 +287,7 @@
         var mapPlaceholderWidth = mapPlaceholder.attr('data-width');
         var mapPlaceholderHeight = mapPlaceholder.attr('data-height');
         var mapPlaceholderSrc = mapPlaceholder.attr('data-iframe-src')
-            // Build iframe
+        // Build iframe
         var mapIFrame = '<iframe src="' + mapPlaceholderSrc + '" width="' + mapPlaceholderWidth + '" height="' + mapPlaceholderHeight + '" style="border:0;" allowfullscreen="" loading="lazy"></iframe>';
         // Add iFrame and remove placeholder
         mapPlaceholder.after(mapIFrame);
@@ -182,15 +297,15 @@
     function setCookie() {
         Cookies.set('googleMapsAllowed', '1', { expires: 1 })
     }
-    $(document).ready(function() {
+    $(document).ready(function () {
         var cookie = Cookies.get('googleMapsAllowed');
         if (cookie) {
             activateGoogleMaps();
         }
-        $('#map-privacy-check-once').click(function() {
+        $('#map-privacy-check-once').click(function () {
             activateGoogleMaps();
         })
-        $('#map-privacy-check-always').click(function() {
+        $('#map-privacy-check-always').click(function () {
             activateGoogleMaps();
             setCookie();
         })

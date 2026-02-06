@@ -11366,6 +11366,10 @@
         border: 1px solid #fff;
     }
 
+    .btn-bright a:hover {
+        color: #101010;
+    }
+
     .btn.btn-bright:hover {
         color: #101010;
         background-color: #fff;
@@ -12150,18 +12154,15 @@
         display: flex;
         align-items: center;
         gap: 8px;
-        padding: 22px;
-        border-radius: 70px;
-        background-color: rgba(0, 0, 0, 0.6);
         border: none;
-        backdrop-filter: blur(10px);
-        width: 75px;
-        height: 75px;
         overflow: hidden;
         white-space: nowrap;
-        transition: width 0.35s ease, padding 0.35s ease, background 0.2s;
         cursor: pointer;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        box-shadow: none;
+        padding: 1.25rem 2.5rem;
+        letter-spacing: 0.15rem;
+        border: 0;
+        text-transform: uppercase;
     }
 
     .floating-expand-btn .label {
@@ -12173,12 +12174,93 @@
     }
 
     .floating-expand-btn:hover {
-        width: 265px;
-        /* expands to the left (because right-fixed) */
-        padding-right: 20px;
+        text-decoration: none;
+        color: #212529;
     }
 
     .floating-expand-btn:hover .label {
         opacity: 1;
         transform: translateX(0);
+    }
+
+    .google-rating__stars {
+        font-size: 50px;
+        color: #fed545;
+    }
+
+    .star.star--full {
+        margin-right: -16px;
+    }
+
+    .google-rating__value,
+    .google-rating__count {
+        font-size: 32px;
+    }
+
+    .google-rating__brand {
+        width: 50px;
+    }
+
+    .btn-mm-landing {
+        background-image: url('./../assets/img/button.png');
+        color: #fff;
+        font-weight: 600;
+        font-size: 20px;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .mb-10p {
+        margin-bottom: 10%;
+    }
+
+    .masthead-img-mobile .google-rating__stars {
+        font-size: 12px;
+        color: #fed545;
+    }
+
+    .masthead-img-mobile .star.star--full {
+        margin-right: 0px;
+    }
+
+    .masthead-img-mobile .google-rating__value,
+    .masthead-img-mobile .google-rating__count {
+        font-size: 12px;
+    }
+
+    .masthead-img-mobile .google-rating__brand {
+        width: 16px;
+    }
+
+    .masthead-img-mobile .btn-mm-landing {
+        background-color: #c2b59b;
+        color: #fff;
+        font-weight: 600;
+        font-size: 12px;
+    }
+
+    .mb-4p {
+        margin-bottom: 4%;
+    }
+
+    .card-text {
+        color: #606060;
+    }
+
+    .reviews.google-rating__stars {
+        font-size: 24px;
+    }
+
+
+    .reviews .star.star--full {
+        margin-right: -10px;
+    }
+
+    .reviews.google-rating__value,
+    .reviews.google-rating__count {
+        font-size: 16px;
+    }
+
+    .reviews.google-rating__brand {
+        width: 26px;
     }
