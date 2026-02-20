@@ -12271,7 +12271,7 @@ h2 {
   .btn-mm-landing.floating-expand-btn {
     /* Schrift und Größe */
     font-size: 12px;
-    max-width: 202px;
+    max-width: 100%;
     padding: 1.25rem 2.5rem; /* Padding etwas reduziert für Mobile */
 
     /* Zentrierung */
