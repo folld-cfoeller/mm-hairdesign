@@ -11607,6 +11607,52 @@ a.text-black:focus {
   border: 0;
 }
 
+.cancellation-rules {
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.cancellation-rule {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.cancellation-rule--mid {
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+@media (min-width: 576px) {
+  .cancellation-rule {
+    border-bottom: none;
+    border-right: 1px solid #e0e0e0;
+  }
+  .cancellation-rule--mid {
+    border-top: none;
+    border-bottom: none;
+    border-right: 1px solid #e0e0e0;
+  }
+  .cancellation-rule:last-child {
+    border-right: none;
+  }
+}
+
+.cancellation-rule__label {
+  font-size: 0.75rem;
+  letter-spacing: 0.1rem;
+}
+
+.cancellation-rule__value {
+  font-size: 0.9rem;
+}
+
+.cancellation-rule__fee {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ae1548;
+  margin-bottom: 0;
+}
+
 .contact-section {
   padding: 5rem 0;
 }
@@ -12389,4 +12435,9 @@ h2 {
 
 .reviews.google-rating__brand {
   width: 26px;
+}
+
+.cancellation-teaser {
+  font-size: 12px;
+  padding: 10px 0 0 0;
 }
