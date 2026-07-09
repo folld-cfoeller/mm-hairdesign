@@ -89,15 +89,6 @@ var team = [{
     a5: "Weißwein",
     a6: "Ich liebe selbstgestrickte Socken "
 }, {
-    name: "Nathalie Wenske",
-    role: "Hairstylistin",
-    img: "./assets/img/team/Nathalie_Wenske.png",
-    a1: "Make up Artist",
-    a2: "Weil ich gerne mit Menschen arbeite & meine Kreativität ausleben kann.",
-    a3: "Meinen Kunden mit meiner Arbeit ein Lächeln ins Gesicht zaubern.",
-    a4: "Pizza im Blut, Neapel im Herz & Schere in der Hand",
-    a5: "Espresso",
-    a6: "Ich habe mehrere Jahre Kampfsport gemacht"
 }, {
 }, {
     name: "Sandra Emmert",
