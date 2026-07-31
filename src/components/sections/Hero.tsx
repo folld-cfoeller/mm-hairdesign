@@ -39,61 +39,24 @@ export default function Hero() {
 
   return (
     <section id="top" ref={ref} className="relative flex h-[100svh] min-h-[680px] w-full flex-col overflow-hidden bg-ink">
-      {/* Full-bleed image: slow Ken Burns on load, parallax on scroll.
-          The -10%/120% offset gives the parallax translateY room to move without
-          ever exposing empty space — that only works for object-cover, which always
-          fills its box regardless of size, so it's safe to keep for the blurred
-          backdrop too. */}
+      {/* Full-bleed image: slow Ken Burns on load, parallax on scroll */}
       <motion.div style={{ y: imageY }} className="absolute inset-0 -top-[10%] h-[120%] w-full">
         <motion.div
           initial={{ scale: 1.14 }}
           animate={{ scale: 1 }}
           transition={{ duration: 2.2, ease: lineEase }}
-          className="relative h-full w-full"
+          className="h-full w-full"
         >
-          {/* Blurred fill — only needed on portrait screens, where a sibling layer
-              below shows the full photo via object-contain and would otherwise letterbox. */}
-          <Image
-            src={HeroImg}
-            alt=""
-            aria-hidden="true"
-            fill
-            sizes="100vw"
-            className="hidden scale-125 object-cover object-top opacity-70 blur-3xl brightness-[0.55] portrait:block"
-          />
-          {/* Full-bleed cover crop — landscape/desktop only. */}
           <Image
             src={HeroImg}
             alt="Das Team von M&M Hairdesign in Bad Nauheim"
             fill
             priority
             sizes="100vw"
-            className="object-cover object-top portrait:hidden"
+            className="object-cover object-top"
           />
         </motion.div>
       </motion.div>
-
-      {/* Portrait screens: the 16:9 team photo shown in full via object-contain, so
-          nobody at the edges gets cropped. Kept in its own viewport-sized box (not the
-          -10%/120% parallax wrapper above) — contain respects the box's real size, so
-          nesting it in the oversized wrapper would anchor it mostly above the fold. */}
-      <div className="absolute inset-0 hidden h-full w-full portrait:block">
-        <motion.div
-          initial={{ scale: 1.14 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 2.2, ease: lineEase }}
-          className="relative h-full w-full"
-        >
-          <Image
-            src={HeroImg}
-            alt="Das Team von M&M Hairdesign in Bad Nauheim"
-            fill
-            priority
-            sizes="100vw"
-            className="object-contain object-top"
-          />
-        </motion.div>
-      </div>
       <div className="absolute inset-0 bg-gradient-to-b from-ink/60 via-ink/35 to-ink" />
       <div className="absolute inset-0 bg-gradient-to-r from-ink/70 via-transparent to-transparent" />
 
