@@ -1,0 +1,16 @@
+# Firebase App Hosting — Backend-Konfiguration (Cloud Run)
+# https://firebase.google.com/docs/app-hosting/configure
+runConfig:
+  minInstances: 0
+  maxInstances: 5
+  concurrency: 80
+  cpu: 1
+  memoryMiB: 512
+
+env:
+  # Google Analytics 4 Measurement ID.
+  # Nur diesen Wert austauschen (Format: G-XXXXXXXXXX) — Consent-Gating
+  # und Event-Tracking sind bereits vollständig verdrahtet.
+  - variable: NEXT_PUBLIC_GA_ID
+    value: "G-XXXXXXXXXX"
+    availability: ["BUILD", "RUNTIME"] # Muss beim Build verfügbar sein!

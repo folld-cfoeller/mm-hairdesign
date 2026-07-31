@@ -1,0 +1,193 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand — ported 1:1 from the legacy site's palette */
+  --color-ink: #0d0d0d;
+  --color-ink-soft: #161616;
+  --color-paper: #fbfaf8;
+  --color-rose: #ae1548;
+  --color-rose-bright: #f51d65;
+  --color-wine: #690d2b;
+
+  --breakpoint-xs: 30rem;
+}
+
+@theme inline {
+  --font-display: var(--font-montserrat);
+  --font-body: var(--font-roboto);
+}
+
+:root {
+  --rose-bright-rgb: 245, 29, 101;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-roboto), Arial, Helvetica, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-montserrat), Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background: var(--color-rose-bright);
+  color: var(--color-white);
+}
+
+/* Thin editorial hairline used as a section accent throughout the site */
+.hairline {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(var(--rose-bright-rgb), 0.6), transparent);
+}
+
+/* Frosted glass surfaces for nav / cards, per the site's "glass + parallax" direction */
+.glass {
+  background: rgba(13, 13, 13, 0.55);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-light {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Reduced motion: kill decorative animation, keep the site fully usable */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.legal-prose {
+  color: rgba(13, 13, 13, 0.75);
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+.legal-prose h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  font-family: var(--font-display), sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-ink);
+}
+.legal-prose p {
+  margin-bottom: 1.1rem;
+}
+.legal-prose ul {
+  margin: 0 0 1.1rem 1.25rem;
+  list-style: disc;
+}
+.legal-prose li {
+  margin-bottom: 0.35rem;
+}
+.legal-prose a {
+  color: var(--color-rose);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.legal-prose strong {
+  color: var(--color-ink);
+}
+
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* ————— Editorial 2026 layer ————— */
+
+/* Endless ticker: track holds two copies of its content, shifts by half its width */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee var(--marquee-duration, 40s) linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Hollow display type used for oversized decorative words */
+.text-stroke-white {
+  -webkit-text-stroke: 1px rgba(251, 250, 248, 0.25);
+  color: transparent;
+}
+.text-stroke-ink {
+  -webkit-text-stroke: 1px rgba(13, 13, 13, 0.2);
+  color: transparent;
+}
+
+/* Hollow lead word that fills with brand rose when its group row is hovered */
+.lead-stroke {
+  -webkit-text-stroke: 1.5px rgba(13, 13, 13, 0.4);
+  color: transparent;
+  transition: color 0.5s ease, -webkit-text-stroke-color 0.5s ease;
+}
+.group:hover .lead-stroke {
+  color: var(--color-rose);
+  -webkit-text-stroke-color: transparent;
+}
+
+/* Full-viewport film grain — sits above everything, purely decorative */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+/* Draggable galleries advertise it */
+.cursor-grab-x {
+  cursor: grab;
+}
+.cursor-grab-x:active {
+  cursor: grabbing;
+}
+
+/* vanilla-cookieconsent — restyle to match brand */
+#cc-main {
+  --cc-font-family: var(--font-body), Arial, sans-serif;
+  --cc-btn-primary-bg: var(--color-rose-bright);
+  --cc-btn-primary-border-color: var(--color-rose-bright);
+  --cc-btn-primary-hover-bg: var(--color-rose);
+  --cc-btn-primary-hover-border-color: var(--color-rose);
+  --cc-btn-secondary-bg: transparent;
+  --cc-btn-secondary-hover-bg: rgba(0, 0, 0, 0.06);
+  --cc-bg: #ffffff;
+  --cc-primary-color: var(--color-ink);
+  --cc-secondary-color: #555;
+  --cc-modal-border-radius: 0.75rem;
+  --cc-btn-border-radius: 999px;
+}
