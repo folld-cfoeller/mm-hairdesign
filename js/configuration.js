@@ -101,16 +101,6 @@ var team = [{
     a5: "Selbstgemachter Eierlikör im Winter von unseren Kunden :-) oder doch Sangria am Strand? ",
     a6: "Ich habe mal in einem Orchester Horn gespielt, über mehrere Jahre und war als Kind bei den Pfadfindern."
 }, {
-    name: "Celine Wagner",
-    role: "Hairstylistin",
-    img: "./assets/img/team/Celine_Wagner.png",
-    a1: "Make-up-Artist",
-    a2: "Da ich bei dem Beruf meine kreative individuelle Ader ausleben kann und der Beruf durch Vielseitigkeit niemals langweilig wird.",
-    a3: "Die Kunden mit einem Lächeln nachhause schicken zu können.",
-    a4: "Das bunte, vielseitige und gleichzeitig tiefgründige Leben der Celine Wagner.",
-    a5: "Wasser, Wasser mit einer Scheibe Orange und Minze und gelegentlich eine kalte Mate.",
-    a6: "Mein kulinarisches Interesse in Bezug aufs Kochen. Ich habe mir meinen Führerschein erkämpft, dabei fahre ich nicht mal gerne Auto und nehme lieber die verspätete DB. Ich liebe es zu singen, doch in Bezug aufs Tanzen fehlt mir jede Kunst von Taktgefühl."
-}, {
     name: "Yara Khalaf",
     role: "Auszubildende",
     img: "./assets/img/team/Yara_Khalaf.png",
