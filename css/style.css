@@ -12307,7 +12307,7 @@ h2 {
   position: fixed;
   bottom: 30px;
   right: 30px; /* Rechts unten auf Desktop */
-  z-index: 10000000;
+  z-index: 1000;
   padding: 1.25rem 2.5rem;
   overflow: hidden;
 }
